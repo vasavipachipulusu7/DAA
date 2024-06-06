@@ -1,0 +1,19 @@
+def convert(s: str, numRows: int) -> str:
+    if numRows == 1 or numRows >= len(s):
+        return s
+
+    result = [''] * numRows
+    step = 2 * numRows - 2
+
+    for i in range(numRows):
+        for j in range(i, len(s), step):
+            result[i] += s[j]
+            if 0 < i < numRows - 1 and j + step - 2 * i < len(s):
+                result[i] += s[j + step - 2 * i]
+
+    return ''.join(result)
+
+# Example usage:
+s1 = "PAYPALISHIRING"
+numRows1 = 3
+print(convert(s1, numRows1))  # Output: "PAHNAPLSIIGYIR"
